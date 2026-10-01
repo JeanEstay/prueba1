@@ -1,0 +1,5 @@
+FROM alpine:latest
+WORKDIR /app
+COPY fecha.sh .
+RUN chmod +x fecha.sh
+CMD ["./fecha.sh"]

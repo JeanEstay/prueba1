@@ -1,0 +1,22 @@
+YAML
+name: Automatizacion Docker Cron
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Se ejecuta automáticamente todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  ejecutar-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Construir la imagen de Docker
+        run: docker build -f Dockerfile.fecha -t imagen-fecha .
+
+      - name: Ejecutar el contenedor
+        run: docker run --rm imagen-fecha
