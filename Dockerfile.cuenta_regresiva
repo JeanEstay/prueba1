@@ -1,0 +1,5 @@
+FROM alpine:latest
+WORKDIR /app
+COPY cuenta_regresiva.sh .
+RUN chmod +x cuenta_regresiva.sh
+CMD ["./cuenta_regresiva.sh"]

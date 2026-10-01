@@ -1,0 +1,21 @@
+name: Automatizacion Cuenta Regresiva Viernes
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Se ejecuta automáticamente todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  ejecutar-cuenta:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Construir la imagen de Docker
+        run: docker build -f Dockerfile.cuenta_regresiva -t imagen-cuenta_regrsiva .
+
+      - name: Ejecutar el contenedor
+        run: docker run --rm imagen-cuenta_regrsiva
