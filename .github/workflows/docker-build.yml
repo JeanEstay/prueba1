@@ -3,7 +3,8 @@ name: Docker Build Test
 on:
   push:
     branches: [ "master", "main" ]
-
+  schedule:
+    - cron: '0 8 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
