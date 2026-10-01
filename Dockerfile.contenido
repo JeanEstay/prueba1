@@ -1,0 +1,5 @@
+FROM alpine:latest
+WORKDIR /app
+COPY check_contenido.sh .
+RUN chmod +x check_contenido.sh
+CMD ["./check_contenido.sh"]

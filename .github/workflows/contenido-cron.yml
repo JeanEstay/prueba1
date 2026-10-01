@@ -1,0 +1,21 @@
+name: Automatizacion Panel Contenido
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Se ejecuta automáticamente todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  ejecutar-panel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Construir la imagen de Docker
+        run: docker build -f Dockerfile.contenido -t imagen-contenido .
+
+      - name: Ejecutar el contenedor
+        run: docker run --rm imagen-contenido
